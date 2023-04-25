@@ -35,6 +35,9 @@ const Footer = () => {
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>navigation.navigate("searchUser")} >
             <Icon name = "search1" size = {30} color = "#980" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate("conversationList")} >
+            <Icon name = "wechat" size = {30} color = "#980" />
         </TouchableOpacity>    
     </View>
   )

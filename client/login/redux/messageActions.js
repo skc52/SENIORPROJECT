@@ -1,44 +1,95 @@
-import axios from "axios";
+const serverUrl = `http://192.168.31.143:4000/api/v1`;
 
-const serverUrl = `http://192.168.141.52:4000/api/v1`;
-export const loadAllInteractionForAUser  = () => async(dispatch) => {
-    try {
-        
-        dispatch({type:"loadInteractionsRequest"});
-        console.log("HERE IN LOADING INTERACTIONS")
-        const config = {  withCredentials: true};
+import axios from 'axios';
+import {
+  FETCH_CONVERSATION_REQUEST,
+  FETCH_CONVERSATION_SUCCESS,
+  FETCH_CONVERSATION_FAILURE,
+  SEND_MESSAGE_REQUEST,
+  SEND_MESSAGE_SUCCESS,
+  SEND_MESSAGE_FAILURE,
+  FETCH_CONVERSATION_LIST_REQUEST, 
+  FETCH_CONVERSATION_LIST_SUCCESS, 
+  FETCH_CONVERSATION_LIST_FAILURE
+} from './messageCONSTANTS';
 
-        const {data} = await axios.post(
-            `${serverUrl}/me/interactions/showall`, 
-            config
-        ) 
+export const fetchConversation = (id) => async dispatch => {
+  dispatch({ type: FETCH_CONVERSATION_REQUEST });
+  try {
+    console.log("TRYING TO FETCH CONVO", id)
+    
+    const {data} = await axios.get(`${serverUrl}/conversation/${id}`);
+    dispatch({
+      type: FETCH_CONVERSATION_SUCCESS,
+      payload: data
+    });
 
-        dispatch({type:"loadInteractionsSuccess", payload:data });
-        
-    } catch (error) {
-        dispatch({type:"loadInteractionsFail", payload:error.response.data.message});
-    }
-}
+    console.log(data);
+  } catch (err) {
+    dispatch({
+      type: FETCH_CONVERSATION_FAILURE,
+      payload: err.response.data.message
+    });
+  }
+};
 
-// load all message for an interaction 
-// an interaction is between a user and another user
+export const sendMessage = (id, text, senderName) => async dispatch => {
+  dispatch({ type: SEND_MESSAGE_REQUEST });
+  try { 
+    
+   
+    const config = {headers:{"Content-type":"application/json"},  withCredentials: true};
 
-export const loadAMessageCompletely  = () => async(dispatch) => {
-    try {
-        
-        dispatch({type:"loginRequest"});
-        console.log("her2e")
-        const config = {headers:{"Content-type":"application/json"},  withCredentials: true};
+    const {data} = await axios.post(`${serverUrl}/message/create/${id}`, { 
+      recipient:id,
+      text:text
+     },
+     config
+     
+     );
 
-        const {data} = await axios.post(
-            `${serverUrl}/login`, 
-            {email, password},
-            config
-        ) 
+     
 
-        dispatch({type:"loginSuccess", payload:data });
-        
-    } catch (error) {
-        dispatch({type:"loginFail", payload:error.response.data.message});
-    }
-}
+    dispatch({
+      type: SEND_MESSAGE_SUCCESS,
+      payload: data
+    });
+  } catch (err) {
+    dispatch({
+      type: SEND_MESSAGE_FAILURE,
+      payload: err.response.data.message
+    });
+  }
+};
+
+
+
+
+
+export const fetchConversationList = (name) => async dispatch => {
+  dispatch({ type: FETCH_CONVERSATION_LIST_REQUEST });
+  try { 
+    
+   
+    const config = {headers:{"Content-type":"application/json"},  withCredentials: true};
+    const {data} = await axios.post(`${serverUrl}/conversations`, 
+    {
+      name
+    },
+     config
+     );
+
+    dispatch({
+      type: FETCH_CONVERSATION_LIST_SUCCESS,
+      payload: data
+    });
+  } catch (err) {
+    dispatch({
+      type: FETCH_CONVERSATION_LIST_FAILURE,
+      payload: err.response.data.message
+    });
+  }
+};
+
+
+

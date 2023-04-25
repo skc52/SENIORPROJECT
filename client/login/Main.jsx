@@ -10,6 +10,7 @@ import Register from './screens/Register.jsx';
 import Camera from './screens/Camera.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './redux/actions';
+import {fetchConversationList} from './redux/messageActions'
 import Loader from './components/Loader';
 import EmailReset from './screens/EmailReset';
 import ResetPw from './screens/ResetPw';
@@ -21,6 +22,8 @@ import SearchUser from './screens/SearchUser';
 import SearchResults from './screens/SearchResults';
 import FollowRequests from './screens/FollowRequests';
 import UpdateProfile from './screens/UpdateProfile';
+import ConversationListScreen from './screens/ConversationList';
+import Conversation from './screens/Conversation';
 const Stack = createNativeStackNavigator();
 
 
@@ -32,6 +35,7 @@ const Main = () => {
   useEffect(()=>{
     console.log(isAuthenticated, "hh", loading)
     dispatch(loadUser())
+    dispatch(fetchConversationList())
   }, [dispatch])
 
   return (
@@ -51,6 +55,9 @@ const Main = () => {
         {/* } */}
        <Stack.Screen name = 'register' component={Register}options={{headerShown:false}}/>
        <Stack.Screen name = 'searchUser' component={SearchUser}options={{headerShown:false}}/>
+       <Stack.Screen name = 'conversation' component={Conversation}options={{headerShown:false}}/>
+
+       <Stack.Screen name = 'conversationList' component={ConversationListScreen}options={{headerShown:false}}/>
 
        <Stack.Screen name = 'sendActivate' component={SendActivate}options={{headerShown:false}}/>
        <Stack.Screen name = 'searchResults' component={SearchResults}options={{headerShown:false}}/>

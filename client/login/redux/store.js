@@ -1,5 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer, activateReducer , pwReducer, followReducer, getUsers, getAUser, updateUser} from "./reducers";
+
+import {messageReducer, conversationListReducer} from './messageReducers.js'
+
 const store= configureStore({
     reducer:{
         auth:authReducer,
@@ -9,6 +12,8 @@ const store= configureStore({
         users:getUsers,
         user:getAUser,
         // updateUser:updateUser
+        message:messageReducer,
+        conversationList:conversationListReducer
 
 
         
