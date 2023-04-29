@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchConversationList } from '../redux/messageActions.js';
+import { getNoMessageUsers } from '../redux/actions.js';
 import Loader from "../components/Loader.jsx"
 import {COLORS, FONT, SIZES, SHADOWS} from './Colors'
 import { useFocusEffect } from '@react-navigation/native';
@@ -84,10 +85,25 @@ const ConversationListScreen = ({ navigation }) => {
 
   }
 
+  const goToNewMessageScreen = () => {
+    //
+    dispatch(getNoMessageUsers())
+    navigation.navigate("newMessage");
+  }
+
   return (
     <View  style = {
       styles.container
     }>
+
+      <View style = {styles.containerTop}>
+        <TouchableOpacity style = {styles.button} onPress={goToNewMessageScreen}>
+          <Text style = {styles.buttonText}>
+             New Message
+          </Text>
+        </TouchableOpacity>
+
+      
       <View style = {styles.searchContainer}>
             <TextInput
                 style = {styles.input}
@@ -101,6 +117,7 @@ const ConversationListScreen = ({ navigation }) => {
             </TouchableOpacity>  
 
            
+        </View>
         </View>
     
     <FlatList
@@ -122,6 +139,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+    
   },
   senderName: {
     fontWeight: 'bold',
@@ -132,12 +150,10 @@ const styles = StyleSheet.create({
   },
   container: {
     marginVertical: 150,    
-        alignItems: 'center',
-
+    alignItems: 'center',
   },
   searchContainer: {
-
-    width: '90%',
+    width: '70%',
     position: 'relative',
     marginBottom:20
   },
@@ -147,16 +163,33 @@ const styles = StyleSheet.create({
     borderColor: '#b5b5b5',
     padding: 10,
     paddingLeft: 40, // Adjust left padding to accommodate the search icon
+    paddingRight: 40, // Add right padding to accommodate the search icon
     fontSize: 15,
   },
   searchIcon: {
     position: 'absolute',
     top: '50%',
-    left: 10, // Adjust the left position of the search icon as needed
+    right: 10, // Move the icon to the right
     transform: [{ translateY: -15 }], // Adjust translateY based on the icon size
   },
-
-
+  containerTop:{
+    flexDirection:"row-reverse"
+  },
+  button: {
+    backgroundColor: "#eee",
+    borderRadius: 5,
+    padding: 10,
+    marginVertical: 5,
+    
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#333",
+    fontSize: 16,
+    margin: 5,
+    textAlign: "center",
+  },
+  
 });
 
 export default ConversationListScreen;

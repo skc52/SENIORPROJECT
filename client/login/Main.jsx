@@ -24,6 +24,12 @@ import FollowRequests from './screens/FollowRequests';
 import UpdateProfile from './screens/UpdateProfile';
 import ConversationListScreen from './screens/ConversationList';
 import Conversation from './screens/Conversation';
+import CreateChallengeScreen from './screens/CreateChallengeScreen';
+import ChallengeListScreen from './screens/challengeListScreen';
+import ChallengeScreen from './screens/ChallengeScreen';
+import DailyCheckIn from './screens/DailyCheckInScreen';
+import ChallengesScreen from './screens/FetchChallenges'
+import NewMessage from './screens/NewMessage';
 const Stack = createNativeStackNavigator();
 
 
@@ -62,7 +68,13 @@ const Main = () => {
        <Stack.Screen name = 'sendActivate' component={SendActivate}options={{headerShown:false}}/>
        <Stack.Screen name = 'searchResults' component={SearchResults}options={{headerShown:false}}/>
        <Stack.Screen name = 'followRequests' component={FollowRequests}options={{headerShown:false}}/>
-       
+       <Stack.Screen name = 'challengeCreate' component={CreateChallengeScreen}options={{headerShown:false}}/>
+       <Stack.Screen name = 'challengeList' component={ChallengeListScreen}options={{headerShown:false}}/>
+       <Stack.Screen name = 'challenge' component={ChallengeScreen}options={{headerShown:false}}/>
+       <Stack.Screen name = 'checkin' component={DailyCheckIn}options={{headerShown:false}}/>
+       <Stack.Screen name = 'challegesMine' component={ChallengesScreen}options={{headerShown:false}}/>
+       <Stack.Screen name = 'newMessage' component={NewMessage}options={{headerShown:false}}/>
+ 
        <Stack.Screen name = 'camera' component={Camera}options={{headerShown:false}}/>
        <Stack.Screen name = 'updateProfile' component={UpdateProfile}options={{headerShown:false}}/>
 

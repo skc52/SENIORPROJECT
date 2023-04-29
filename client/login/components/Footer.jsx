@@ -18,7 +18,7 @@ const Footer = () => {
             justifyContent:"space-around"
         }}
     >
-        <TouchableOpacity onPress={()=>navigation.navigate("changePw")}>
+        <TouchableOpacity onPress={()=>navigation.navigate("challengeList")}>
             <Icon name = "home" size = {30} color = "#980" />
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{

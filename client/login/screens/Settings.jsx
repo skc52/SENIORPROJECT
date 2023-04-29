@@ -20,70 +20,46 @@ const Settings = ({navigation}) => {
     }
 
   return (
-    <View style = {{
-        flex:1,
-        backgroundColor:"#fff",
-        alignItems:"center",
-        justifyContent:"center",
-    }}
-    >
-      <TouchableOpacity onPress={()=>navigation.navigate("changePw")}>
-                <Text
-                    style = {{
-                        color:"#900",
-                        height:30,
-                        margin:20,
-                        textAlign:"center"
-                    }}
-                >
-                    Change Password
-                </Text>
-            </TouchableOpacity>
-            <Button
-            
-                style = {Styles.btn}
-                onPress = {logoutHandler}
-            >
-                <Text style = {{color:"#fff"}}>Log Out</Text>
-            </Button>
-            <Button
-            
-            style = {Styles.btn}
-            onPress = {updateProfileHandler}
-        >
-            <Text style = {{color:"#0ff"}}>Update Profile</Text>
-        </Button>
-            <Button
-            
-                style = {Styles.btn}
-                onPress = {deleteProfileHandler}
-            >
-                <Text style = {{color:"#ff0"}}>Delete Account</Text>
-            </Button>
-
-    </View>
+    <View style={styles.container}>
+  <TouchableOpacity onPress={() => navigation.navigate("changePw")}>
+    <Text style={styles.buttonText}>Change Password</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.button} onPress={logoutHandler}>
+    <Text style={styles.buttonText}>Log Out</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.button} onPress={updateProfileHandler}>
+    <Text style={[styles.buttonText, { color: "green" }]}>Update Profile</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.button} onPress={deleteProfileHandler}>
+    <Text style={[styles.buttonText, { color: "red" }]}>Delete Account</Text>
+  </TouchableOpacity>
+</View>
   )
 }
 
 export default Settings
 
-const Styles = StyleSheet.create({
-   
-    
-    input:{
-        backgroundColor:"#fff",
-        borderWidth:1,
-        borderColor:"#b5b5b5",
-        padding:10,
-        paddingLeft:15,
-        marginVertical:15,
-        fontSize:15
-
-    }
-    ,
-    btn:{
-        backgroundColor:"#900",
-        padding:5,
-    
-    }
-})
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 20,
+    },
+    button: {
+      backgroundColor: "#eee",
+      borderRadius: 5,
+      padding: 10,
+      marginVertical: 5,
+      width: "100%",
+      alignItems: "center",
+    },
+    buttonText: {
+      color: "#333",
+      fontSize: 16,
+      margin: 5,
+      textAlign: "center",
+    },
+  });
+  

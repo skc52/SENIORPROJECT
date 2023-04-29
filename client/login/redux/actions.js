@@ -382,3 +382,24 @@ export const getAUser  = (id) => async(dispatch) => {
 }
 
 
+
+
+export const getNoMessageUsers  = () => async(dispatch) => {
+    try {
+        dispatch({type:"searchUsersRequest"});
+        const config = {  withCredentials: true};
+ 
+        const {data} = await axios.get(
+            `${serverUrl}/messages/no`, 
+           
+            config
+        ) 
+        dispatch({type:"searchUsersSuccess", payload:data});
+
+        
+    } catch (error) {
+        dispatch({type:"searchUsersFail", payload:error.response.data.message})
+    }
+}
+
+

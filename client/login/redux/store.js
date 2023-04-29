@@ -2,6 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authReducer, activateReducer , pwReducer, followReducer, getUsers, getAUser, updateUser} from "./reducers";
 
 import {messageReducer, conversationListReducer} from './messageReducers.js'
+import {createChallengeReducer, challengeListReducer, challengeReducer, checkedInMessagesReducer
+    , streakReducer,challengesReducer
+} from './challengeReducers.js'
 
 const store= configureStore({
     reducer:{
@@ -13,7 +16,14 @@ const store= configureStore({
         user:getAUser,
         // updateUser:updateUser
         message:messageReducer,
-        conversationList:conversationListReducer
+        conversationList:conversationListReducer,
+        challengeList:challengeListReducer,
+        createChallenge:createChallengeReducer,
+        challenge:challengeReducer,
+        checkedInMessages: checkedInMessagesReducer,
+        streak:streakReducer,
+        fetchChallenges:challengesReducer,
+        // upvoteChallenge:upvoteChallengeReducer
 
 
         
