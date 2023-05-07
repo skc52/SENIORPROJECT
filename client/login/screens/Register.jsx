@@ -64,11 +64,11 @@ const Register = ({navigation, route}) => {
         <Avatar.Image
             size= {100}
             source = {{uri:avatar? avatar:null}}
-            style = {{backgroundColor:"#900"}}
+            style = {{backgroundColor:"#aaa"}}
         />
 
         <TouchableOpacity onPress={handleImage}>
-            <Text style= {{color:"#900"}}>Change Photo</Text>
+            <Text style= {{color:"#aaa"}}>Change Photo</Text>
         </TouchableOpacity>
 
         <View style = {{width:"70%"}}>
@@ -98,12 +98,12 @@ const Register = ({navigation, route}) => {
                 style = {Styles.btn}
                 onPress = {registerHandler}
             >
-                <Text style = {{color:"#fff"}}>Register</Text>
+                <Text style = {{color:"#aaa"}}>Register</Text>
             </Button>
             <TouchableOpacity onPress={()=>navigation.navigate("login")}>
                 <Text
                     style = {{
-                        color:"#900",
+                        color:"#abb",
                         height:30,
                         margin:20,
                         textAlign:"center"
@@ -138,8 +138,12 @@ const Styles = StyleSheet.create({
     }
     ,
     btn:{
-        backgroundColor:"#900",
-        padding:5,
+        backgroundColor: "#eee",
+        borderRadius: 5,
+        padding: 10,
+        marginVertical: 5,
+        width: "100%",
+        alignItems: "center",
     
     }
 })

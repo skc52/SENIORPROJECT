@@ -30,6 +30,8 @@ import ChallengeScreen from './screens/ChallengeScreen';
 import DailyCheckIn from './screens/DailyCheckInScreen';
 import ChallengesScreen from './screens/FetchChallenges'
 import NewMessage from './screens/NewMessage';
+import App from './screens/Posts';
+import SharePost from './screens/SharePost';
 const Stack = createNativeStackNavigator();
 
 
@@ -48,7 +50,7 @@ const Main = () => {
   //  loading? <Loader/> : 
    <NavigationContainer>
    {/* Like react routes    */}
-   <Stack.Navigator initialRouteName={isAuthenticated?'home':'login'}>
+   <Stack.Navigator initialRouteName={isAuthenticated?'posts':'login'}>
        {/* name is path */}
 
        <Stack.Screen name = 'home' component={Home}  options={{headerShown:false}}/>
@@ -74,7 +76,9 @@ const Main = () => {
        <Stack.Screen name = 'checkin' component={DailyCheckIn}options={{headerShown:false}}/>
        <Stack.Screen name = 'challegesMine' component={ChallengesScreen}options={{headerShown:false}}/>
        <Stack.Screen name = 'newMessage' component={NewMessage}options={{headerShown:false}}/>
- 
+       <Stack.Screen name = 'posts' component={App}options={{headerShown:false}}/>
+       <Stack.Screen name = 'postCreate' component={SharePost}options={{headerShown:false}}/>
+
        <Stack.Screen name = 'camera' component={Camera}options={{headerShown:false}}/>
        <Stack.Screen name = 'updateProfile' component={UpdateProfile}options={{headerShown:false}}/>
 

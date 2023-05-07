@@ -1,11 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware  } from "@reduxjs/toolkit";
 import { authReducer, activateReducer , pwReducer, followReducer, getUsers, getAUser, updateUser} from "./reducers";
 
 import {messageReducer, conversationListReducer} from './messageReducers.js'
 import {createChallengeReducer, challengeListReducer, challengeReducer, checkedInMessagesReducer
-    , streakReducer,challengesReducer
+    , streakReducer,challengesReducer, 
 } from './challengeReducers.js'
 
+import { postReducer } from "./postReducers";
+import { commentReducer } from "./comentReducers";
 const store= configureStore({
     reducer:{
         auth:authReducer,
@@ -23,11 +25,16 @@ const store= configureStore({
         checkedInMessages: checkedInMessagesReducer,
         streak:streakReducer,
         fetchChallenges:challengesReducer,
+        posts:postReducer,
+        comment:commentReducer
         // upvoteChallenge:upvoteChallengeReducer
 
 
         
-    }
+    },
+    middleware: getDefaultMiddleware({
+        immutableCheck: false,
+      }),
 })
 
 export default store;

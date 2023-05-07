@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllChallengesIHaveInteractedWith } from '../redux/challengeActions'
 import { sendFollowRequest , unFollow, clearAcceptSuccess, clearSendSuccess, clearUnfollowSuccess } from '../redux/actions'
 import {COLORS, FONT, SIZES, SHADOWS} from './Colors'
+import { showAllPostsOfAUser } from '../redux/postActions'
+import Settings from './Settings'
 const Profile = ({ navigation, route }) => {
     const { user } = useSelector((state) => state.auth);
     const { user2, sendReqSuccess, unfollowSuccess, acceptReqSuccess } = useSelector(
       (state) => state.follow
-    );
+    )
     const {challenges:allchallenges, loading, error} = useSelector((state)=>state.fetchChallenges)
 
     const {success} = useSelector(state=>state.challengeList)
@@ -23,6 +25,11 @@ const Profile = ({ navigation, route }) => {
       navigation.navigate("challegesMine", {userId:profileUser._id});
 
 
+    }
+    const viewUserHistory = () => {
+      dispatch(showAllPostsOfAUser(profileUser._id));
+
+      navigation.navigate("posts", {all:false});
     }
     
   
@@ -102,9 +109,16 @@ const Profile = ({ navigation, route }) => {
         </TouchableOpacity>
       )}
 
+
       <TouchableOpacity style={styles.viewChallengesButton} onPress={viewChallengesHandler}>
         <Text style={styles.viewChallengesButtonText}>View User Challenges</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.viewChallengesButton} onPress={viewUserHistory}>
+        <Text style={styles.viewChallengesButtonText}>View User History</Text>
+      </TouchableOpacity>
+
+      {user._id === profileUser._id && <Settings navigation={navigation}/>}
+
       
     </View>
   );
@@ -116,6 +130,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    marginTop:20,
   },
   avatar: {
     width: 200,

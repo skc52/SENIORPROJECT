@@ -5,6 +5,7 @@ import {Button} from 'react-native-paper'
 import { updateUser, clearUpdate, loadUser } from '../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import * as FileSystem from 'expo-file-system';
+import Loader from '../components/Loader'
 
 const UpdateProfile = ({navigation, route}) => {
     const {isAuthenticated, loading, user, isUpdated} = useSelector((state)=>state.auth);
@@ -104,7 +105,7 @@ const UpdateProfile = ({navigation, route}) => {
                 style = {Styles.btn}
                 onPress = {updateHandler}
             >
-                <Text style = {{color:"#fff"}}>Update</Text>
+                <Text style = {Styles.btnText}>Update</Text>
             </Button>
 
               
@@ -112,8 +113,10 @@ const UpdateProfile = ({navigation, route}) => {
                 style = {Styles.btn}
                 onPress = {()=>navigation.navigate("profile", {profileUser:user, me:true})}
             >
-                <Text style = {{color:"#fff"}}>Cancel</Text>
+                <Text style = {{color:"red"}}>Cancel</Text>
             </Button>
+
+            {isUpdated && <Loader/>}
             
 
         </View>
@@ -139,10 +142,20 @@ const Styles = StyleSheet.create({
         fontSize:15
 
     }
-    ,
-    btn:{
-        backgroundColor:"#900",
-        padding:5,
     
-    }
+   
+    ,btn: {
+        backgroundColor: "#eee",
+        borderRadius: 5,
+        padding: 10,
+        marginVertical: 5,
+        width: "100%",
+        alignItems: "center",
+      },
+      btnText: {
+        color: "green",
+        fontSize: 16,
+        margin: 5,
+        textAlign: "center",
+      },
 })

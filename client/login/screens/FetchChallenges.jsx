@@ -18,7 +18,7 @@ const ChallengesScreen = ({ navigation, route }) => {
       console.log("FOCUS")
     //   dispatch(getAllCheckedInMessages(challenge?._id.toString()))
      
-      // dispatch(fetchAllChallengesIHaveInteractedWith(userId));
+      dispatch(fetchAllChallengesIHaveInteractedWith(userId));
       console.log(allchallenges)
 
       return () => {
@@ -30,7 +30,7 @@ const ChallengesScreen = ({ navigation, route }) => {
   useEffect(() => {
     // RESET
     // dispatch({type:"CLEAR_CHALLENGES_MY_INTERACTED"})
-    // dispatch(fetchAllChallengesIHaveInteractedWith(userId));
+    dispatch(fetchAllChallengesIHaveInteractedWith(userId));
     if (filter === "created"){
         setChallenges(allchallenges.createdChallenges)
     }

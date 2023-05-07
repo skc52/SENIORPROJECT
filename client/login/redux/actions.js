@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const serverUrl = `http://192.168.31.143:4000/api/v1`;
+const serverUrl = `http://192.168.63.115:4000/api/v1`;
 export const login  = (email, password) => async(dispatch) => {
     try {
         

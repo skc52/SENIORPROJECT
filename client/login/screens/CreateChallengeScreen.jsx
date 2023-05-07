@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet , ScrollView, TouchableOpacity} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet , KeyboardAvoidingView,ScrollView, TouchableOpacity} from 'react-native';
 import { createChallenge } from '../redux/challengeActions';
 import { Chip } from 'react-native-paper';
 
-import { useDispatch } from 'react-redux';
-const CreateChallengeScreen = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost } from '../redux/postActions';
+const CreateChallengeScreen = ({navigation}) => {
   const [title, setTitle] = useState('');
   const [challenge, setChallenge] = useState('');
   const [duration, setDuration] = useState('');
   const [tags, setTags] = useState([]);
   const [tag, setTag] = useState('');
+
+  const {challenge:newChalleng} = useSelector(state=>state.createChallenge)
 
   const dispatch = useDispatch();
   const addTagHandler= () => {
@@ -37,8 +40,14 @@ const CreateChallengeScreen = () => {
     emptyInput();
   };
 
+ 
+
   return (
-    <View style = {styles.container}>
+    <KeyboardAvoidingView 
+    style={styles.container} 
+    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    keyboardVerticalOffset={100} // add extra offset if needed
+  >
       <View  style = {styles.keyword}>  
 
         <Text>Title:</Text>
@@ -112,8 +121,12 @@ const CreateChallengeScreen = () => {
   </TouchableOpacity>
 
 
+  <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate("postCreate",{post:null})}}>
+    <Text style={[styles.buttonText, { color: "grey" }]}>Create a Post?</Text>
+  </TouchableOpacity>
+
       {/* <Button style = {styles.button} title="Create Challenge" onPress={handleSubmit} /> */}
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -123,7 +136,7 @@ const CreateChallengeScreen = () => {
 const styles = StyleSheet.create({
   
   container: {
-    marginVertical: 150,    
+    marginVertical: 50,    
 
   },
   keyword:{

@@ -66,7 +66,7 @@ const Login = ({navigation}) => {
                 style = {Styles.btn}
                 onPress = {loginHandler}
             >
-                <Text style = {{color:"#fff"}}>Login</Text>
+                <Text style = {{color:"#aaa"}}>Login</Text>
             </Button>
 
             <Text
@@ -81,7 +81,7 @@ const Login = ({navigation}) => {
             <TouchableOpacity onPress={()=>navigation.navigate("register")}>
                 <Text
                     style = {{
-                        color:"#900",
+                        // color:"#900",
                         height:30,
                         margin:20,
                         textAlign:"center"
@@ -126,8 +126,12 @@ const Styles = StyleSheet.create({
     }
     ,
     btn:{
-        backgroundColor:"#900",
-        padding:5,
+        backgroundColor: "#eee",
+        borderRadius: 5,
+        padding: 10,
+        marginVertical: 5,
+        width: "100%",
+        alignItems: "center",
     
     }
 })

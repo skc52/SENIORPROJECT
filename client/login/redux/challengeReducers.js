@@ -82,13 +82,20 @@ export const challengeReducer = (state = initialState2, action) => {
               case COMPLETE_CHALLENGE_REQUEST:
       return {  loading: true, error: null };
     case GET_CHALLENGE_SUCCESS:
-      case UPVOTE_CHALLENGE_SUCCESS:
         case QUIT_CHALLENGE_SUCCESS:
           case JOIN_CHALLENGE_SUCCESS:
             case CHECKIN_CHALLENGE_SUCCESS:
+              case UPVOTE_CHALLENGE_SUCCESS:
+
               case COMPLETE_CHALLENGE_SUCCESS:
       return {  challenge: action.payload.challenge, loading: false, message:action.payload.message?action.payload.message:"" };
-    case GET_CHALLENGE_FAILURE:
+      // case UPVOTE_CHALLENGE_SUCCESS:
+      //   return {
+      //     challenge: { ...state.challenge, upvotes:action.payload.challenge.upvotes },
+      //     loading: false,
+      //     message: action.payload.message ? action.payload.message : '',
+      //   };
+      case GET_CHALLENGE_FAILURE:
       case UPVOTE_CHALLENGE_FAIL:
         case QUIT_CHALLENGE_FAIL:
           case JOIN_CHALLENGE_FAIL:

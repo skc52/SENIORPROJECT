@@ -27,12 +27,12 @@ const Settings = ({navigation}) => {
   <TouchableOpacity style={styles.button} onPress={logoutHandler}>
     <Text style={styles.buttonText}>Log Out</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.button} onPress={updateProfileHandler}>
+  {/* <TouchableOpacity style={styles.button} onPress={updateProfileHandler}>
     <Text style={[styles.buttonText, { color: "green" }]}>Update Profile</Text>
   </TouchableOpacity>
   <TouchableOpacity style={styles.button} onPress={deleteProfileHandler}>
     <Text style={[styles.buttonText, { color: "red" }]}>Delete Account</Text>
-  </TouchableOpacity>
+  </TouchableOpacity> */}
 </View>
   )
 }
@@ -45,14 +45,14 @@ const styles = StyleSheet.create({
       backgroundColor: "#fff",
       alignItems: "center",
       justifyContent: "center",
-      padding: 20,
+      flexDirection:"row"
     },
     button: {
       backgroundColor: "#eee",
       borderRadius: 5,
       padding: 10,
       marginVertical: 5,
-      width: "100%",
+      width: "60%",
       alignItems: "center",
     },
     buttonText: {

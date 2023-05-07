@@ -49,7 +49,7 @@ const DailyCheckInScreen = ({ route, navigation }) => {
       dispatch(clearMsg());
 
       navigation.navigate('challenge')}} disabled={loading}>
-    <Text style={styles.buttonText}>Cancel</Text>
+    <Text style={styles.buttonText}>Go Back</Text>
   </TouchableOpacity>
 </View>
             {error && <Text style={styles.error}>{error}</Text>}

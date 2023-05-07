@@ -31,8 +31,8 @@ import {
   FETCH_CHALLENGES_SUCCESS,
   FETCH_CHALLENGES_FAIL,
   } from './challengeConstants.js';
-const serverUrl = `http://192.168.31.143:4000/api/v1`;
-const config = {headers:{"Content-type":"application/json"},  withCredentials: true};
+  const serverUrl = `http://192.168.63.115:4000/api/v1`;
+  const config = {headers:{"Content-type":"application/json"},  withCredentials: true};
 
 
 

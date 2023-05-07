@@ -7,10 +7,9 @@ import { useFocusEffect } from '@react-navigation/native';
 import Loader from '../components/Loader';
 
 const ChallengeScreen = ({navigation, route}) => {
-    const {challenge, error, loading} = useSelector((state)=>state.challenge)
+  const {challenge} = route.params;
     const {streak, error:strkError, loading:strkLoading} = useSelector((state)=>state.streak)
     const {messages} =  useSelector((state)=>state.checkedInMessages);
-    const [id, setid] = useState("");
     const {user} = useSelector((state)=>state.auth)
   const [isJoined, setIsJoined] = useState(false);
   const [isUpvoted, setIsUpvoted] = useState(false);
@@ -58,8 +57,6 @@ const ChallengeScreen = ({navigation, route}) => {
   useFocusEffect(
     React.useCallback(() => {
       console.log("FOCUS")
-      dispatch(getMyStreaksForAChallenge(challenge?._id.toString()))
-
       checkIfUpvoted(challenge)
       // dispatch(getAllCheckedInMessages(challenge?._id.toString()))
       if (streak === challenge?.duration){
@@ -75,8 +72,7 @@ const ChallengeScreen = ({navigation, route}) => {
     }, []) // Empty dependency array ensures that the effect runs only once when the component is mounted
   );
   useEffect(()=>{
-    
-    console.log(user.name)
+    console.log("CHALLENGE is", challenge.title)
 
     dispatch(getMyStreaksForAChallenge(challenge?._id.toString()))
 
@@ -168,7 +164,7 @@ const ChallengeScreen = ({navigation, route}) => {
       <Text style={styles.description}>{challenge?.challenge}</Text>
 
       {quited&& 
-        <Text style = {styles.quit}>Once a challenge is quit cannot be rejoined</Text>
+        <Text style = {styles.quit}>You are a quitter. I will not let you rejoin this challenge</Text>
       }
       {isJoined && !completed && !quited &&
           <Text style={styles.joinedText}>You have joined this challenge</Text>}

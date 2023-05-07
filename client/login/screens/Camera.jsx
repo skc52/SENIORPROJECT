@@ -20,7 +20,7 @@ const CameraComponent = ({navigation, route}) => {
         }
 
         const data = await ImagePicker.launchImageLibraryAsync({
-            allowsEditing:true, aspect:[1,1], quality:1
+            allowsEditing:true, aspect:[1,1], quality:1 ,canceled: true,
         })
 
         return navigation.navigate("register", {image:data.uri, data:data})
@@ -35,7 +35,7 @@ const CameraComponent = ({navigation, route}) => {
       }
 
       const data = await ImagePicker.launchImageLibraryAsync({
-          allowsEditing:true, aspect:[1,1], quality:1
+          allowsEditing:true, aspect:[1,1], quality:1,canceled: true,
       })
 
       return navigation.navigate("updateProfile", {image:data.uri, data:data})

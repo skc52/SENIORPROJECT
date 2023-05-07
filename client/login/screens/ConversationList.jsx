@@ -67,10 +67,7 @@ const ConversationListScreen = ({ navigation }) => {
   );
 
   
-  if (conversationList.length === 0){
-    return <Text>No conversations Yet</Text>;
-
-  }
+  
 
   if (isLoading) {
     return <Loader/>;
@@ -95,6 +92,10 @@ const ConversationListScreen = ({ navigation }) => {
     <View  style = {
       styles.container
     }>
+      { conversationList.length === 0 &&
+     <Text>No conversations Yet</Text>}
+
+  
 
       <View style = {styles.containerTop}>
         <TouchableOpacity style = {styles.button} onPress={goToNewMessageScreen}>
